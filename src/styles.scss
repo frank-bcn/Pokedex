@@ -1,25 +1,18 @@
 body {
-    display: flex;
-    margin: 0px;
-    height: 100lvh;
-    width: 100vw;
-    background: #abbaab;
-    background: linear-gradient(to right, #d0ece7, #edeed8);
-    color: #333;
-  }
+  display: flex;
+  margin: 0px;
+  height: 100lvh;
+  width: 100vw;
+  background: #abbaab;
+  background: linear-gradient(to right, #d0ece7, #edeed8);
+  color: #333;
+}
 
-  html {
-    scroll-behavior: smooth;
-    user-select: none;
-  }
-  
-  ::-webkit-scrollbar {
-    display: none;
-  }
+html {
+  scroll-behavior: smooth;
+  user-select: none;
+}
 
-  .content {
-    display: flex;
-    width: 100vw;
-    height: 100lvh;
-  
-  }
+::-webkit-scrollbar {
+  display: none;
+}

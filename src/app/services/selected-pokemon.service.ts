@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LoadPokemonService } from './load-pokemon.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,24 +28,30 @@ export class SelectedPokemonService {
     dragon: '#c4bdff',
   };
 
-  constructor() {}
+  constructor( public lp: LoadPokemonService) {}
 
   selectPokemon(pokemon: any) {
     this.selectedPokemon = pokemon;
     this.typeBackgroundColor();
-    console.log(this.selectedPokemon);
   }
 
   typeBackgroundColor(): string {
-    if (!this.selectedPokemon) return '';
-
+    if (!this.selectedPokemon || !this.selectedPokemon.types) {
+      return ''; 
+    }
+  
     let types = this.selectedPokemon.types;
     if (types.length === 1) {
       return this.colors[types[0].type.name];
     } else {
       let backgroundColor1 = this.colors[types[0].type.name];
       let backgroundColor2 = this.colors[types[1].type.name];
-      return `linear-gradient(to bottom left, ${backgroundColor1} 0%, ${backgroundColor2} 100%)`;
+      return `linear-gradient(to bottom left, ${backgroundColor1} 50%, ${backgroundColor2} 50%)`;
     }
-  } 
+  }
+
+  close() {
+      this.selectedPokemon = null;
+  }
+  
 }

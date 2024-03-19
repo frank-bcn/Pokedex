@@ -1,24 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
-import { slideInAnimation } from './pages/_animations';
+import { LoadPokemonService } from './services/load-pokemon.service';
+import { SelectedPokemonService } from './services/selected-pokemon.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [slideInAnimation],
 })
 export class AppComponent {
   title = 'pokedex';
 
-  constructor(private router: Router) {}
+  constructor(
+    public lp: LoadPokemonService,
+    public sp: SelectedPokemonService
+  ) {}
 
-
-  prepareRoute(outlet: RouterOutlet) {
-    return (
-      outlet &&
-      outlet.activatedRouteData &&
-      outlet.activatedRouteData['animation']
-    );
+  ngOnInit() {
+    this.lp.loadFirstPokemonData().then(() => {
+      this.lp.loadRemainingPokemonData();
+    });
   }
 }

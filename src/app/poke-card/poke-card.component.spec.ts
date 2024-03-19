@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentPageComponent } from './content-page.component';
+import { PokeCardComponent } from './poke-card.component';
 
-describe('ContentPageComponent', () => {
-  let component: ContentPageComponent;
-  let fixture: ComponentFixture<ContentPageComponent>;
+describe('PokeCardComponent', () => {
+  let component: PokeCardComponent;
+  let fixture: ComponentFixture<PokeCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ContentPageComponent]
+      declarations: [PokeCardComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ContentPageComponent);
+    fixture = TestBed.createComponent(PokeCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
