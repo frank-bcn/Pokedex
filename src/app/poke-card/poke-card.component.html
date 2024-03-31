@@ -1,49 +1,114 @@
 <div class="card">
-    <div class="side front">
-      <div class="containerCard" [style.background]="sp.typeBackgroundColor()">
-        <div class="pokeIdContainer">
-          <span class="pokeId"># {{ sp.selectedPokemon?.id }}</span>
-          <img src="/assets/img/close.png"class="close" (click)="sp.close()">
-        </div>
-        <div class="imgContainer">
-          <span class="imgBox">
-            <img
-              class="pokeImg"
-              [src]="
-                sp.selectedPokemon?.sprites.other['official-artwork']
-                  .front_default
-              "
-            />
-          </span>
-        </div>
-        <span class="pokename">{{ sp.selectedPokemon?.name }}</span>
-        <span class="type">
-          {{ sp.selectedPokemon?.types[0]?.type.name }}
-          <ng-container *ngIf="sp.selectedPokemon?.types.length > 1">
-            / {{ sp.selectedPokemon?.types[1]?.type.name }}
-          </ng-container>
+  <div class="side">
+    <div class="containerCard" [style.background]="sp.typeBackgroundColor()">
+      <div class="pokeIdContainer">
+        <span class="pokeId"># {{ sp.selectedPokemon?.id }}</span>
+        <img src="/assets/img/close.png" class="close" (click)="sp.close()" />
+      </div>
+      <div class="imgContainer">
+        <span class="imgBox">
+          <img
+            class="pokeImg"
+            [src]="
+              sp.selectedPokemon?.sprites.other['official-artwork']
+                .front_default
+            "
+          />
         </span>
       </div>
+      <span class="pokename">{{ sp.selectedPokemon?.name }}</span>
+      <span class="type">
+        {{ sp.selectedPokemon?.types[0]?.type.name }}
+        <ng-container *ngIf="sp.selectedPokemon?.types.length > 1">
+          / {{ sp.selectedPokemon?.types[1]?.type.name }}
+        </ng-container>
+      </span>
       <div class="dataContainer">
-        <span class="hp"
-          >HP: {{ sp.selectedPokemon?.stats[0]?.base_stat }}</span
-        >
-        <span class="attack"
-          >Attack: {{ sp.selectedPokemon?.stats[1]?.base_stat }}</span
-        >
-        <span class="defense"
-          >Defense: {{ sp.selectedPokemon?.stats[2]?.base_stat }}</span
-        >
-        <span class="specialAttack">
-          Special Attack :{{ sp.selectedPokemon?.stats[3]?.base_stat }}</span
-        >
-        <span class="specialDefense">
-          Special Defense :{{ sp.selectedPokemon?.stats[4]?.base_stat }}</span
-        >
-        <span class="speed"
-          >Speed: {{ sp.selectedPokemon?.stats[5]?.base_stat }}</span
-        >
+        <div class="dataLeft">
+          <div class="progress-bar">
+            <span class="progress-label"
+              >HP: {{ sp.selectedPokemon?.stats[0]?.base_stat }}</span
+            >
+            <div class="progress">
+              <div
+                class="progress-fill"
+                [ngStyle]="{
+                  width: powerLevel(sp.selectedPokemon?.stats[0]?.base_stat)
+                }"
+              ></div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <span class="progress-label"
+              >Attack: {{ sp.selectedPokemon?.stats[1]?.base_stat }}</span
+            >
+            <div class="progress">
+              <div
+                class="progress-fill"
+                [ngStyle]="{
+                  width: powerLevel(sp.selectedPokemon?.stats[1]?.base_stat)
+                }"
+              ></div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <span class="progress-label"
+              >Defense: {{ sp.selectedPokemon?.stats[2]?.base_stat }}</span
+            >
+            <div class="progress">
+              <div
+                class="progress-fill"
+                [ngStyle]="{
+                  width: powerLevel(sp.selectedPokemon?.stats[2]?.base_stat)
+                }"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="dataRight">
+          <div class="progress-bar">
+            <span class="progress-label"
+              >Special Attack:
+              {{ sp.selectedPokemon?.stats[3]?.base_stat }}</span
+            >
+            <div class="progress">
+              <div
+                class="progress-fill"
+                [ngStyle]="{
+                  width: powerLevel(sp.selectedPokemon?.stats[3]?.base_stat)
+                }"
+              ></div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <span class="progress-label"
+              >Special Defense:
+              {{ sp.selectedPokemon?.stats[4]?.base_stat }}</span
+            >
+            <div class="progress">
+              <div
+                class="progress-fill"
+                [ngStyle]="{
+                  width: powerLevel(sp.selectedPokemon?.stats[4]?.base_stat)
+                }"
+              ></div>
+            </div>
+          </div>
+          <div class="progress-bar">
+            <span class="progress-label"
+              >Speed: {{ sp.selectedPokemon?.stats[5]?.base_stat }}</span
+            >
+            <div class="progress">
+              <div
+                class="progress-fill"
+                [ngStyle]="{
+                  width: powerLevel(sp.selectedPokemon?.stats[5]?.base_stat)
+                }"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-   
+  </div>
+</div>

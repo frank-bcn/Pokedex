@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PokeballComponent } from './pages/pokeball/pokeball.component';
+import { PokeballComponent } from './pokeball/pokeball.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokeCardComponent } from './poke-card/poke-card.component';
 
