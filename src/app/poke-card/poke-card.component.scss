@@ -107,24 +107,41 @@
     .dataContainer {
       display: flex;
       justify-content: space-around;
-      width: 100%;
+      width: calc(100% - 4%);
+      margin: 0 2% 0 2%;
       height: 40%;
       border-radius: 0 0 10px 10px;
       color: #333;
       font-size: clamp(16px, 1vw,24px);
+
+      .dataLeft {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+      }
+
+      .dataRight{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 50%;
+      }
 
     }
   }
 
 
   .progress {
+    display: flex;
     height: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     padding: 2px;
+    margin: 0 6% 0 6%;
     text-align: center;
     color: #fff;
-    width: 100%;
+    width: calc(100% - 12%);
   }
   
  

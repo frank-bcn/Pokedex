@@ -4,9 +4,9 @@
     <app-pokeball></app-pokeball>
   </header>
   <div class="container">
-    <div class="pokemon">
+    <div class="pokemonContainer">
       <div
-        class="pokemonContainer"
+        class="pokemonBox"
         *ngFor="let pokemon of lp.pokemonData"
         (click)="sp.selectPokemon(pokemon)"
       >
