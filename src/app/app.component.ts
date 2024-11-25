@@ -19,6 +19,11 @@ export class AppComponent {
       'font-size:20px; font-weight:800; color:red; text-shadow: 5px 5px 10px green'
     );
   }
+  /*
+   * ngOnInit: Diese Methode wird beim Initialisieren der Komponente aufgerufen.
+   * Sie lädt die anfänglichen Pokémon-Daten und ruft anschließend eine Methode auf,
+   * um zusätzliche Pokémon-Daten zu laden, sobald die ersten Daten erfolgreich geladen wurden.
+   */
   ngOnInit() {
     this.lp.loadInitialPokemon().then(() => {
       this.lp.loadAdditionalPokemon();

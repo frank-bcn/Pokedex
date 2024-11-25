@@ -28,23 +28,52 @@ export class SelectedPokemonService {
 
   constructor() {}
 
+  /*
+   * selectPokemon: Diese Methode setzt das angegebene Pokémon als das aktuell ausgewählte Pokémon.
+   *
+   * @param pokemon - Das Pokémon, das als ausgewählt markiert werden soll.
+   */
   selectPokemon(pokemon: any): void {
     this.selectedPokemon = pokemon;
   }
 
+  /*
+   * close: Diese Methode setzt das aktuell ausgewählte Pokémon zurück, indem sie `selectedPokemon` auf `null` setzt.
+   * Dadurch wird das Pokémon des aktuellen Auswahlprozesses entfernt.
+   */
   close(): void {
     this.selectedPokemon = null;
   }
 
+  /*
+   * typeColor: Diese Methode gibt die entsprechende Farbe für einen Pokémon-Typ zurück.
+   * Wenn der angegebene Typ in der `colors`-Datenstruktur vorhanden ist, wird die zugehörige Farbe zurückgegeben.
+   * Andernfalls wird ein leerer String zurückgegeben.
+   *
+   * @param type - Der Pokémon-Typ, für den die Farbe bestimmt werden soll (z. B. 'fire', 'water').
+   * @returns - Die Farbe, die dem angegebenen Typ zugeordnet ist, oder ein leerer String, wenn der Typ nicht gefunden wird.
+   */
   typeColor(type: string): string {
     return this.colors[type] || '';
   }
 
+  /*
+   * singleTypeColor: Diese Methode gibt die Farbe des ersten Pokémon-Typs des aktuell ausgewählten Pokémon zurück.
+   * Wenn das Pokémon keinen Typ hat oder der Typ nicht gefunden wird, wird ein leerer String zurückgegeben.
+   *
+   * @returns - Die Farbe des ersten Typs des ausgewählten Pokémon oder ein leerer String, wenn kein Typ vorhanden ist.
+   */
   singleTypeColor(): string {
     const type = this.selectedPokemon.types[0]?.type?.name;
     return type ? this.typeColor(type) : '';
   }
 
+  /*
+   * gradientTypeColor: Diese Methode gibt einen linearen Farbverlauf (Gradient) zurück, der auf den Typen des
+   * aktuell ausgewählten Pokémon basiert. Falls das Pokémon zwei Typen hat, wird der Farbverlauf zwischen beiden Typen erzeugt.
+   *
+   * @returns - Ein CSS-Gradient-String, der den Farbverlauf zwischen den beiden Typen des ausgewählten Pokémon darstellt.
+   */
   gradientTypeColor(): string {
     const type1 = this.selectedPokemon.types[0]?.type?.name;
     const type2 = this.selectedPokemon.types[1]?.type?.name;
@@ -55,6 +84,12 @@ export class SelectedPokemonService {
     return `linear-gradient(to bottom left, ${color1} 50%, ${color2} 50%)`;
   }
 
+  /*
+   * typeBackgroundColor: Diese Methode gibt die Hintergrundfarbe für das ausgewählte Pokémon basierend auf seinen Typen zurück.
+   * Wenn das Pokémon nur einen Typ hat, wird die Farbe des Typs zurückgegeben. Wenn es zwei Typen hat, wird ein Farbverlauf erzeugt.
+   *
+   * @returns - Die Hintergrundfarbe für das ausgewählte Pokémon, entweder eine einzelne Farbe oder ein Farbverlauf.
+   */
   typeBackgroundColor(): string {
     if (!this.selectedPokemon || !this.selectedPokemon.types) {
       return '';

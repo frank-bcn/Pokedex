@@ -17,11 +17,20 @@ export class PokeCardComponent {
     public le: LoadEvolutionService
   ) {}
 
+  /*
+   * ngOnInit: Diese Methode wird beim Initialisieren der Komponente aufgerufen.
+   * Sie prüft, ob ein ausgewähltes Pokémon vorhanden ist und lädt dessen Evolutionsdaten, falls dies zutrifft.
+   */
   ngOnInit() {
     if (this.sp.selectedPokemon) {
       this.le.loadEvolution(this.sp.selectedPokemon.species.url);
     }
   }
+
+  /*
+   * toggleFlip: Diese Methode wird verwendet, um den Zustand der "Flip"-Aktion umzuschalten.
+   * Sie kehrt den aktuellen Wert der `isFlipped`-Eigenschaft um.
+   */
   toggleFlip() {
     this.isFlipped = !this.isFlipped;
   }
