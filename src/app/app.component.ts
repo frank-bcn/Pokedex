@@ -14,16 +14,14 @@ export class AppComponent {
     public lp: LoadPokemonService,
     public sp: SelectedPokemonService
   ) {
-
     console.log(
       '%c  Fränk rules!',
       'font-size:20px; font-weight:800; color:red; text-shadow: 5px 5px 10px green'
     );
   }
-
   ngOnInit() {
-    this.lp.loadFirstPokemonData().then(() => {
-      this.lp.loadRemainingPokemonData();
+    this.lp.loadInitialPokemon().then(() => {
+      this.lp.loadAdditionalPokemon();
     });
   }
 }

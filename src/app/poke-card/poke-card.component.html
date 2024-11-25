@@ -1,10 +1,24 @@
-<div class="card">
-  <div class="side">
-    <div class="containerCard" [style.background]="sp.typeBackgroundColor()">
+<div class="shadow">
+  <img src="/assets/img/close.png" class="close" (click)="sp.close()" />
+  <div
+    class="card"
+    [style.background]="sp.typeBackgroundColor()"
+    [class.flipped]="isFlipped"
+  >
+    <!-- frontside -->
+    <div class="front">
       <div class="pokeIdContainer">
         <span class="pokeId"># {{ sp.selectedPokemon?.id }}</span>
-        <img src="/assets/img/close.png" class="close" (click)="sp.close()" />
+        <span class="icon">
+          <img
+            src="/assets/img/change.png"
+            class="change"
+            (click)="toggleFlip()"
+            *ngIf="le.canShowEvolution()"
+          />
+        </span>
       </div>
+      <span class="pokename">{{ sp.selectedPokemon?.name }}</span>
       <div class="imgContainer">
         <span class="imgBox">
           <img
@@ -16,98 +30,67 @@
           />
         </span>
       </div>
-      <span class="pokename">{{ sp.selectedPokemon?.name }}</span>
-      <span class="type">
-        {{ sp.selectedPokemon?.types[0]?.type.name }}
-        <ng-container *ngIf="sp.selectedPokemon?.types.length > 1">
-          / {{ sp.selectedPokemon?.types[1]?.type.name }}
-        </ng-container>
-      </span>
-      <div class="dataContainer">
-        <div class="dataLeft">
-          <div class="progress-bar">
-            <span class="progress-label"
-              >HP: {{ sp.selectedPokemon?.stats[0]?.base_stat }}</span
-            >
-            <div class="progress">
-              <div
-                class="progress-fill"
-                [ngStyle]="{
-                  width: powerLevel(sp.selectedPokemon?.stats[0]?.base_stat)
-                }"
-              ></div>
-            </div>
-          </div>
-          <div class="progress-bar">
-            <span class="progress-label"
-              >Attack: {{ sp.selectedPokemon?.stats[1]?.base_stat }}</span
-            >
-            <div class="progress">
-              <div
-                class="progress-fill"
-                [ngStyle]="{
-                  width: powerLevel(sp.selectedPokemon?.stats[1]?.base_stat)
-                }"
-              ></div>
-            </div>
-          </div>
-          <div class="progress-bar">
-            <span class="progress-label"
-              >Defense: {{ sp.selectedPokemon?.stats[2]?.base_stat }}</span
-            >
-            <div class="progress">
-              <div
-                class="progress-fill"
-                [ngStyle]="{
-                  width: powerLevel(sp.selectedPokemon?.stats[2]?.base_stat)
-                }"
-              ></div>
-            </div>
-          </div>
+
+      <div class="typeContainer">
+        <div
+          *ngFor="let type of sp.selectedPokemon?.types"
+          class="type"
+          [style.background-color]="sp.typeColor(type.type.name)"
+        >
+          <span>{{ type.type.name }}</span>
         </div>
-        <div class="dataRight">
-          <div class="progress-bar">
-            <span class="progress-label"
-              >Special Attack:
-              {{ sp.selectedPokemon?.stats[3]?.base_stat }}</span
-            >
-            <div class="progress">
-              <div
-                class="progress-fill"
-                [ngStyle]="{
-                  width: powerLevel(sp.selectedPokemon?.stats[3]?.base_stat)
-                }"
-              ></div>
+      </div>
+      <app-poke-progress></app-poke-progress>
+    </div>
+    <!-- backside -->
+    <div class="back">
+      <div class="changeContainer">
+        <span class="icon">
+          <img
+            src="/assets/img/change.png"
+            class="change"
+            (click)="toggleFlip()"
+            *ngIf="le.canShowEvolution()"
+          />
+        </span>
+      </div>
+
+      <div *ngIf="le.evolution" class="evolutionContainer">
+        <h3>Evolutionen:</h3>
+        <ul>
+          <li *ngFor="let evo of le.createEvolutionList()">
+            <div>
+              {{ evo.name }}
+
+              <div *ngIf="evo.conditions.length > 0">
+                <ul>
+                  <li *ngFor="let condition of evo.conditions">
+                    <span *ngIf="condition.minLevel"
+                      >Level: {{ condition.minLevel }}</span
+                    >
+                    <span *ngIf="condition.item"
+                      >Item: {{ condition.item }}</span
+                    >
+                    <span *ngIf="condition.timeOfDay"
+                      >Tageszeit: {{ condition.timeOfDay }}</span
+                    >
+                    <span *ngIf="condition.location"
+                      >Ort: {{ condition.location }}</span
+                    >
+                    <span *ngIf="condition.gender"
+                      >Geschlecht: {{ condition.gender }}</span
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="progress-bar">
-            <span class="progress-label"
-              >Special Defense:
-              {{ sp.selectedPokemon?.stats[4]?.base_stat }}</span
-            >
-            <div class="progress">
-              <div
-                class="progress-fill"
-                [ngStyle]="{
-                  width: powerLevel(sp.selectedPokemon?.stats[4]?.base_stat)
-                }"
-              ></div>
-            </div>
-          </div>
-          <div class="progress-bar">
-            <span class="progress-label"
-              >Speed: {{ sp.selectedPokemon?.stats[5]?.base_stat }}</span
-            >
-            <div class="progress">
-              <div
-                class="progress-fill"
-                [ngStyle]="{
-                  width: powerLevel(sp.selectedPokemon?.stats[5]?.base_stat)
-                }"
-              ></div>
-            </div>
-          </div>
-        </div>
+            <img
+              *ngIf="evo.pokemonData"
+              [src]="evo.pokemonData.sprites?.other?.['official-artwork']?.front_default"
+              alt="{{ evo.name }}"
+            />
+          </li>
+        </ul>
       </div>
     </div>
   </div>

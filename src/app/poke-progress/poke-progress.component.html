@@ -1,0 +1,84 @@
+<div class="dataContainer">
+  <div class="dataLeft">
+    <div class="progress-bar">
+      <span class="progress-label"
+        >HP: {{ sp.selectedPokemon?.stats[0]?.base_stat }}</span
+      >
+      <div class="progress">
+        <div
+          class="progress-fill"
+          [ngStyle]="{
+            width: powerLevel(sp.selectedPokemon?.stats[0]?.base_stat)
+          }"
+        ></div>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <span class="progress-label"
+        >Attack: {{ sp.selectedPokemon?.stats[1]?.base_stat }}</span
+      >
+      <div class="progress">
+        <div
+          class="progress-fill"
+          [ngStyle]="{
+            width: powerLevel(sp.selectedPokemon?.stats[1]?.base_stat)
+          }"
+        ></div>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <span class="progress-label"
+        >Defense: {{ sp.selectedPokemon?.stats[2]?.base_stat }}</span
+      >
+      <div class="progress">
+        <div
+          class="progress-fill"
+          [ngStyle]="{
+            width: powerLevel(sp.selectedPokemon?.stats[2]?.base_stat)
+          }"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="dataRight">
+    <div class="progress-bar">
+      <span class="progress-label"
+        >Special Attack: {{ sp.selectedPokemon?.stats[3]?.base_stat }}</span
+      >
+      <div class="progress">
+        <div
+          class="progress-fill"
+          [ngStyle]="{
+            width: powerLevel(sp.selectedPokemon?.stats[3]?.base_stat)
+          }"
+        ></div>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <span class="progress-label"
+        >Special Defense: {{ sp.selectedPokemon?.stats[4]?.base_stat }}</span
+      >
+      <div class="progress">
+        <div
+          class="progress-fill"
+          [ngStyle]="{
+            width: powerLevel(sp.selectedPokemon?.stats[4]?.base_stat)
+          }"
+        ></div>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <span class="progress-label"
+        >Speed: {{ sp.selectedPokemon?.stats[5]?.base_stat }}</span
+      >
+      <div class="progress">
+        <div
+          class="progress-fill"
+          [ngStyle]="{
+            width: powerLevel(sp.selectedPokemon?.stats[5]?.base_stat)
+          }"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
